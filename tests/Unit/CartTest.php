@@ -10,7 +10,8 @@ use App\Services\Discount\FixedDiscount;
 
 /**
  * Clase CartTest
- * Esta clase de pruebas unitarias verifica la funcionalidad de la clase Cart y las estrategias de descuento.
+ * Esta clase de pruebas unitarias verifica la funcionalidad de la clase Cart
+ * y las estrategias de descuento.
  * Cada método de prueba cubre un escenario específico.
  */
 class CartTest extends TestCase
@@ -45,7 +46,8 @@ class CartTest extends TestCase
     }
 
     /**
-     * Prueba que al agregar el mismo artículo, se actualiza la cantidad en lugar de duplicarlo.
+     * Prueba que al agregar el mismo artículo, se actualiza la cantidad en lugar
+     * de duplicarlo.
      */
     public function testAddingSameItemUpdatesQuantity()
     {
@@ -145,7 +147,8 @@ class CartTest extends TestCase
     }
 
     /**
-     * Prueba que asegura que la lista de artículos no esté vacía después de agregar un artículo.
+     * Prueba que asegura que la lista de artículos no esté vacía después de agregar
+     * un artículo.
      */
     public function testItemsAreNotEmptyAfterAddingItem()
     {
@@ -190,7 +193,8 @@ class CartTest extends TestCase
     }
 
     /**
-     * Prueba que asegura que se arroje una excepción al intentar eliminar un artículo que no existe.
+     * Prueba que asegura que se arroje una excepción al intentar eliminar un artículo
+     * que no existe.
      */
     public function testRemoveNonExistentItemDoesNotChangeSubtotal()
     {
@@ -201,7 +205,8 @@ class CartTest extends TestCase
         $subtotalBefore = $this->cart->getSubtotal();
         $this->cart->removeItem('NonExistentItem');
 
-        // Asegura que el subtotal no cambie después de intentar eliminar un artículo que no existe.
+        // Asegura que el subtotal no cambie después de intentar eliminar un artículo
+        // que no existe.
         $this->assertEquals($subtotalBefore, $this->cart->getSubtotal());
 
         // Ejemplo de prueba que falla (el subtotal no cambia).
