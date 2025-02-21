@@ -33,8 +33,8 @@ class CartTest extends TestCase
      */
     public function testAddItemIncreasesSubtotal()
     {
-        // Crea un artículo: "Apple", precio 1.50, cantidad 2.
-        $item = new Item('Apple', 1.50, 2);
+        // Crea un artículo: "Manzana", precio 1.50, cantidad 2.
+        $item = new Item('Manzana', 1.50, 2);
         $this->cart->addItem($item);
 
         // Subtotal esperado: 1.50 * 2 = 3.00.
@@ -49,14 +49,14 @@ class CartTest extends TestCase
      */
     public function testAddingSameItemUpdatesQuantity()
     {
-        // Crea dos artículos con el mismo nombre "Banana".
-        $item1 = new Item('Banana', 0.50, 3);
-        $item2 = new Item('Banana', 0.50, 2);
+        // Crea dos artículos con el mismo nombre "Platano".
+        $item1 = new Item('Platano', 0.50, 3);
+        $item2 = new Item('Platano', 0.50, 2);
 
         $this->cart->addItem($item1);
         $this->cart->addItem($item2);
 
-        // Cantidad esperada para "Banana": 3 + 2 = 5.
+        // Cantidad esperada para "Platano": 3 + 2 = 5.
         $this->assertEquals(5, $this->cart->getItems()[0]->quantity);
         // Subtotal esperado: 0.50 * 5 = 2.50.
         $this->assertEquals(2.50, $this->cart->getSubtotal());
@@ -71,8 +71,8 @@ class CartTest extends TestCase
     public function testRemoveItemDecreasesSubtotal()
     {
         // Agrega dos artículos distintos.
-        $item1 = new Item('Orange', 1.00, 4);   // Total: 4.00
-        $item2 = new Item('Grapes', 2.00, 1);    // Total: 2.00
+        $item1 = new Item('Naranja', 1.00, 4);   // Total: 4.00
+        $item2 = new Item('Uvas', 2.00, 1);    // Total: 2.00
         $this->cart->addItem($item1);
         $this->cart->addItem($item2);
 
@@ -80,7 +80,7 @@ class CartTest extends TestCase
         $this->assertEquals(6.00, $this->cart->getSubtotal());
 
         // Elimina "Orange" del carrito.
-        $this->cart->removeItem('Orange');
+        $this->cart->removeItem('Naranja');
         // Subtotal esperado después de la eliminación: 2.00.
         $this->assertEquals(2.00, $this->cart->getSubtotal());
 
@@ -132,7 +132,7 @@ class CartTest extends TestCase
     public function testFixedDiscountCannotReduceTotalBelowZero()
     {
         // Crea un carrito con un subtotal de $10.
-        $this->cart->addItem(new Item('CheapItem', 10));
+        $this->cart->addItem(new Item('ItemBarato', 10));
 
         // Aplica un descuento fijo mayor que el subtotal.
         $discount = new FixedDiscount(20);
@@ -149,7 +149,7 @@ class CartTest extends TestCase
      */
     public function testItemsAreNotEmptyAfterAddingItem()
     {
-        $item = new Item('Peach', 1.00);
+        $item = new Item('Durazno', 1.00);
         $this->cart->addItem($item);
 
         // Asegura que la lista de artículos no esté vacía.
@@ -164,7 +164,7 @@ class CartTest extends TestCase
      */
     public function testSubtotalIsNotNull()
     {
-        $item = new Item('Pineapple', 3.00);
+        $item = new Item('Pina', 3.00);
         $this->cart->addItem($item);
 
         // Asegura que el subtotal no sea nulo después de agregar un artículo.
@@ -194,7 +194,7 @@ class CartTest extends TestCase
      */
     public function testRemoveNonExistentItemDoesNotChangeSubtotal()
     {
-        $item = new Item('Cherry', 1.50);
+        $item = new Item('Cerezas', 1.50);
         $this->cart->addItem($item);
 
         // Guarda el subtotal antes de intentar eliminar un artículo inexistente.
